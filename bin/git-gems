@@ -1,3 +1,39 @@
 #! /usr/bin/env ruby
 
 require 'thor'
+require 'bundler'
+
+module Git
+  class Gems < Thor
+    option :path, aliases: "-p"
+    option :binstubs, aliases: "-b"
+    desc "git gems install [OPTIONS]",""
+    def install()
+      install_path = ->() {
+        install_path = options[:path]
+        install_path = is_rackapp? ?
+          "./vendor/bundle" : "./.bundle" if path.nil?
+        return install_path
+      }.call()
+
+      binstubs_path = ->() {
+        binstubs_path = options[:binstubs]
+        binstubs_path = is_rackapp? ?
+          "./.bundle/binstubs" : "./bin" if path.nil?
+        return binstubs_path
+      }.call()
+
+      pid = spawn(
+        "bundle install --path=#{install_path} --binstubs=#{binstubs_path}"
+      )
+      Process::wait(pid)
+    end
+    default_task :install
+
+    private
+    def is_rackapp?
+      return File.exist?(File.expand_path("./config.ru"))
+    end
+
+  end
+end
