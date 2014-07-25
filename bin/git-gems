@@ -12,14 +12,14 @@ module Git
       install_path = ->() {
         install_path = options[:path]
         install_path = is_rackapp? ?
-          "./vendor/bundle" : "./.bundle" if path.nil?
+          "./vendor/bundle" : "./.bundle" if install_path.nil?
         return install_path
       }.call()
 
       binstubs_path = ->() {
         binstubs_path = options[:binstubs]
         binstubs_path = is_rackapp? ?
-          "./.bundle/binstubs" : "./bin" if path.nil?
+          "./.bundle/binstubs" : "./bin_stubs" if binstubs_path.nil?
         return binstubs_path
       }.call()
 
@@ -30,6 +30,7 @@ module Git
     end
     default_task :install
 
+
     private
     def is_rackapp?
       return File.exist?(File.expand_path("./config.ru"))
@@ -37,3 +38,5 @@ module Git
 
   end
 end
+
+Git::Gems.start(ARGV)
