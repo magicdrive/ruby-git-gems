@@ -1,7 +1,7 @@
-require "git/gems/version"
+# coding: utf-8
 
-module Git
-  module Gems
-    # Your code goes here...
-  end
-end
+require 'rubygems'
+require 'bundler/setup'
+require "git/gems/version"
+require "git/gems/cli"
+
