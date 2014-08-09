@@ -13,6 +13,11 @@ module Git
           return File.exist?(File.expand_path("./config.ru"))
         end
 
+        def exec_cmd(commnad)
+          pid = spawn(command.to_s)
+          Process::wait(pid)
+        end
+
         def default_install_path()
           install_path = options[:path]
           install_path = is_rackapp? ?
@@ -21,9 +26,7 @@ module Git
         end
 
         def default_binstubs_path()
-          binstubs_path = options[:binstubs]
-          binstubs_path = "./.bundle/bin"
-          return binstubs_path
+          return "./.bundle/bin"
         end
       end
 
@@ -32,19 +35,28 @@ module Git
       option :binstubs, :alias => "-b", :default => default_binstubs_path()
       desc "git gems install [OPTIONS]",""
       def install(*args)
-        pid = spawn(
-          "bundle install --path=#{options[:path]} --binstubs=#{options[:binstubs]} #{args.join(%{ })}"
-        )
-        Process::wait(pid)
+        exec_cmd "bundle install --path=#{options[:path]} --binstubs=#{options[:binstubs]} #{args.join(%{ })}"
       end
       default_task :install
 
       desc 'git gems exec [COMMAND] [OPTIONS]',''
       def exec(cmd, *args)
-        pid = spawn(
-          "bundle exec #{cmd} #{args.join(%{ })}"
-        )
-        Process::wait(pid)
+        exec_cmd "bundle exec #{cmd} #{args.join(%{ })}"
+      end
+
+      desc 'git gems init',''
+      def init()
+        %w(Rakefile Gemfile README.md).each do |f|
+          exec_cmd "cp -a #{File.expand_path("../fixtures/#{template_file}.template", __FILE__)} ./"
+        end
+        exec_cmd "mkdir -p lib spec"
+        exec_cmd "git init"
+      end
+
+      option :version,     :alias => "-v", :default => Time.now.strftime("%Y%m%d%H%M")
+      desc 'git gems release_tag',''
+      def release_tag
+        exec_cmd "git tag -a 'release-#{options[:version]}' -v"
       end
 
       def method_missing(name, *args)
