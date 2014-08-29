@@ -2,6 +2,6 @@
 
 require 'rubygems'
 require 'bundler/setup'
-require "git/gems/version"
-require "git/gems/cli"
+require File.expand_path("../../lib/git/gems/version", File.dirname(__FILE__))
+require File.expand_path("../../lib/git/gems/cli", File.dirname(__FILE__))
 

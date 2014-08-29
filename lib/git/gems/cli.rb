@@ -2,7 +2,6 @@
 
 require 'rubygems'
 require 'bundler/setup'
-require "git/gems/version"
 require 'thor'
 
 module Git
@@ -11,11 +10,6 @@ module Git
       class << self
         def is_rackapp?
           return File.exist?(File.expand_path("./config.ru"))
-        end
-
-        def exec_cmd(commnad)
-          pid = spawn(command.to_s)
-          Process::wait(pid)
         end
 
         def default_install_path()
@@ -31,8 +25,8 @@ module Git
       end
 
       public
-      option :path,     :alias => "-p", :default => default_install_path()
-      option :binstubs, :alias => "-b", :default => default_binstubs_path()
+      option :path,     :alias => "-p", :default => default_install_path
+      option :binstubs, :alias => "-b", :default => default_binstubs_path
       desc "git gems install [OPTIONS]",""
       def install(*args)
         exec_cmd "bundle install --path=#{options[:path]} --binstubs=#{options[:binstubs]} #{args.join(%{ })}"
@@ -54,9 +48,15 @@ module Git
       end
 
       option :version,     :alias => "-v", :default => Time.now.strftime("%Y%m%d%H%M")
-      desc 'git gems release_tag',''
+      desc 'git gems release_tag', ''
       def release_tag
         exec_cmd "git tag -a 'release-#{options[:version]}' -v"
+      end
+
+      private
+      def exec_cmd(command)
+        pid = spawn(command.to_s)
+        Process::wait(pid)
       end
 
       def method_missing(name, *args)
