@@ -44,6 +44,7 @@ module Git
           exec_cmd "cp -a #{File.expand_path("../fixtures/#{template_file}.template", __FILE__)} ./"
         end
         exec_cmd "mkdir -p lib spec"
+        exec_cmd "touch lib/.keep spec/.keep"
         exec_cmd "git init"
       end
 
