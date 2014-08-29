@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Git::Gems::VERSION
   spec.authors       = ["Hiroshi IKEGAMI"]
   spec.email         = ["hiroshi.ikegami@magicdrive.jp"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{rubygem utililty: bundler and git wrapper}
+  spec.description   = %q{}
+  spec.homepage      = "https://github.com/magicdrive/ruby-git-gems"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
