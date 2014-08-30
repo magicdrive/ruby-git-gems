@@ -1,7 +1,6 @@
 # coding: utf-8
 
 require 'rubygems'
-require 'bundler/setup'
 require 'thor'
 
 module Git
@@ -29,7 +28,7 @@ module Git
       option :binstubs, :alias => "-b", :default => default_binstubs_path
       desc "git gems install [OPTIONS]",""
       def install(*args)
-        exec_cmd "bundle install --path=#{options[:path]} --binstubs=#{options[:binstubs]} #{args.join(%{ })}"
+        exec_cmd "bundle install --path=#{options[:path]} --binstubs=#{options[:binstubs]}"
       end
       default_task :install
 
