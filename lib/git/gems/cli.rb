@@ -24,20 +24,20 @@ module Git
       end
 
       public
-      option :path,     :alias => "-p", :default => default_install_path
-      option :binstubs, :alias => "-b", :default => default_binstubs_path
-      desc "git gems install [OPTIONS]",""
+      option :path,      :default => default_install_path
+      option :binstubs,  :default => default_binstubs_path
+      desc "install [OPTIONS]","do bundle install."
       def install(*args)
-        exec_cmd "bundle install --path=#{options[:path]} --binstubs=#{options[:binstubs]}"
+        exec_cmd "bundle install --path=#{options[:path]} --binstubs=#{options[:binstubs]} #{args.join(%{ })}"
       end
       default_task :install
 
-      desc 'git gems exec [COMMAND] [OPTIONS]',''
+      desc 'exec [COMMAND] [OPTIONS]','do bundle exec .'
       def exec(cmd, *args)
         exec_cmd "bundle exec #{cmd} #{args.join(%{ })}"
       end
 
-      desc 'git gems init',''
+      desc 'init','initilalize ruby project'
       def init()
         %w(Rakefile Gemfile README.md).each do |f|
           exec_cmd "cp -a #{File.expand_path("../../../../fixtures/#{f}.template", __FILE__)} ./#{f}"
@@ -47,10 +47,12 @@ module Git
         exec_cmd "git init"
       end
 
-      option :version,     :alias => "-v", :default => Time.now.strftime("%Y%m%d%H%M")
-      desc 'git gems release_tag', ''
-      def release_tag
+      option :version, :default => Time.now.strftime("%Y%m%d%H%M")
+      option :push, :type => :boolean
+      desc 'release [--version] [version_name]', 'taged release-tag'
+      def release
         exec_cmd "git tag -a 'release-#{options[:version]}'"
+        exec_cmd "git push origin --tags" if options[:push]
       end
 
       private

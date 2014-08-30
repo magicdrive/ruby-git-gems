@@ -38,7 +38,7 @@ make a template of the repository nor a rack app without also be of gem.
 `release_tag` command:  
 taged for release. Tag name is the default YYYYMMDDHHmm.
 
-    git gems release_tag [-v|--version][release_version]
+    git gems release_tag [--version][version_name]
 
 `exec` command:  
 The runs are passed to the bundle exec option if it does not support came over. Argument is also in accordance with the rules of the `bundle exec`.
