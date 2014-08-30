@@ -1,24 +1,54 @@
 # Git::Gems
 
-TODO: Write a gem description
+my bundler and git wrapper.  (thor based)
+
+
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'git-gems'
+	gem 'git-gems'
 
 And then execute:
 
-    $ bundle
+	$ bundle
 
 Or install it yourself as:
 
-    $ gem install git-gems
+	$ gem install git-gems
 
 ## Usage
 
-TODO: Write usage instructions here
+	git gems [OPTION]
+
+`install` command (default):
+Set automatically `--path` option it is determined whether the rack app.
+
+	git gems	
+    #or
+	git gems install 
+
+`init` command:  
+Customized just for a moment or `bundle gem` is` bundle init`. 
+make a template of the repository nor a rack app without also be of gem.
+
+    git gems init
+
+`release_tag` command:  
+taged for release. Tag name is the default YYYYMMDDHHmm.
+
+    git gems release_tag [-v|--version][release_version]
+
+`exec` command:  
+The runs are passed to the bundle exec option if it does not support came over. Argument is also in accordance with the rules of the `bundle exec`.
+
+    git gems [command]
+    # or
+    git gems exec [command]
+    
+
+
 
 ## Contributing
 
