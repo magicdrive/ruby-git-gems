@@ -40,7 +40,7 @@ module Git
       desc 'git gems init',''
       def init()
         %w(Rakefile Gemfile README.md).each do |f|
-          exec_cmd "cp -a #{File.expand_path("../fixtures/#{template_file}.template", __FILE__)} ./"
+          exec_cmd "cp -a #{File.expand_path("../../../../fixtures/#{f}.template", __FILE__)} ./#{f}"
         end
         exec_cmd "mkdir -p lib spec"
         exec_cmd "touch lib/.keep spec/.keep"
@@ -50,7 +50,7 @@ module Git
       option :version,     :alias => "-v", :default => Time.now.strftime("%Y%m%d%H%M")
       desc 'git gems release_tag', ''
       def release_tag
-        exec_cmd "git tag -a 'release-#{options[:version]}' -v"
+        exec_cmd "git tag -a 'release-#{options[:version]}'"
       end
 
       private
