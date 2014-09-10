@@ -1,12 +1,18 @@
 # coding: utf-8
 require "bundler/gem_tasks"
-require "bundle/setup"
+require "bundler/setup"
 
 begin
   require 'rspec/core/rake_task'
-  RSpec::Core::RakeTask.new(:spec) do |spec|
-    spec.pattern = 'spec/**/*_spec.rb'
-    spec.rspec_opts = ['-cfs']
+  require 'rspec'
+  require 'rr'
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    t.rspec_opts = ["-c", "-f progress", "-r ./spec/spec_helper.rb"]
+    t.pattern = 'spec/**/*_spec.rb'
+  end
+  RSpec.configure do |config|
+    config.mock_with :rr
+    # config.mock_with RR::Adapters::Rspec
   end
 rescue LoadError => e
 end
