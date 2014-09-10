@@ -1,4 +1,4 @@
-![Build Status](https://secure.travis-ci.org/magicdirve/ruby-git-gems.png?branch=master](https://travis-ci.org/magicdrive/ruby-git-gems))
+![Build Status](https://travis-ci.org/magicdrive/ruby-git-gems.svg?branch=feature%2Frspec)
 # Git::Gems
 
 my bundler and git wrapper.  (thor based)
