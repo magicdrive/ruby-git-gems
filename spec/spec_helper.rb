@@ -16,9 +16,9 @@ def capture(stream)
 end
 
 
-class Git::Gems::CLI
-  private
-  def exec_cmd(command)
-    puts command
-  end
-end
+##################class Git::Gems::CLI
+##################  private
+##################  def exec_cmd(command)
+##################    puts command
+##################  end
+##################end
