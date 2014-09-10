@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/magicdrive/ruby-git-gems.svg?branch=feature%2Frspec)
+[![Build Status](https://travis-ci.org/magicdrive/ruby-git-gems)](https://travis-ci.org/magicdrive/ruby-git-gems.svg?branch=feature%2Frspec)
 # Git::Gems
 
 my bundler and git wrapper.  (thor based)
@@ -53,7 +53,7 @@ The runs are passed to the bundle exec option if it does not support came over. 
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/git-gems/fork )
+1. Fork it ( https://github.com/magicdrive/ruby-git-gems/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
