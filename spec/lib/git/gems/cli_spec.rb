@@ -32,9 +32,9 @@ describe Git::Gems::CLI do
         expect(capture(:stdout) {
           @instance.invoke(:init, [], {})
         }).to eq(<<-STRING
-cp -a /home/travis/build/magicdrive/ruby-git-gems/fixtures/Rakefile.template ./Rakefile
-cp -a /home/travis/build/magicdrive/ruby-git-gems/fixtures/Gemfile.template ./Gemfile
-cp -a /home/travis/build/magicdrive/ruby-git-gems/fixtures/README.md.template ./README.md
+cp -a #{$project_path}/fixtures/Rakefile.template ./Rakefile
+cp -a #{$project_path}/fixtures/Gemfile.template ./Gemfile
+cp -a #{$project_path}/fixtures/README.md.template ./README.md
 mkdir -p lib spec
 touch lib/.keep spec/.keep
 git init

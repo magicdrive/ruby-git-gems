@@ -22,3 +22,8 @@ class Git::Gems::CLI
     puts command
   end
 end
+
+
+$project_path = "#{File.expand_path("../", File.dirname(__FILE__))}"
+
+__END__
