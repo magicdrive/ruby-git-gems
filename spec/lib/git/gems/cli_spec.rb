@@ -31,15 +31,14 @@ describe Git::Gems::CLI do
       it do
         expect(capture(:stdout) {
           @instance.invoke(:init, [], {})
-        }).to eq(<<-STRING
+        }).to eq(<<-STRING)
 cp -a #{$project_path}/fixtures/Rakefile.template ./Rakefile
 cp -a #{$project_path}/fixtures/Gemfile.template ./Gemfile
 cp -a #{$project_path}/fixtures/README.md.template ./README.md
 mkdir -p lib spec
 touch lib/.keep spec/.keep
 git init
-                STRING
-        )
+        STRING
       end
     end
 
@@ -57,11 +56,10 @@ git init
       it do
         expect(capture(:stdout) {
           @instance.invoke(:release, [], {:version => 'fuga', :push => true})
-        }).to eq(<<-STRING
+        }).to eq(<<-STRING)
 git tag -a 'release-fuga'
 git push origin --tags
         STRING
-        )
       end
     end
 
