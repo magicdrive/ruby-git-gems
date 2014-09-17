@@ -26,9 +26,14 @@ module Git
       public
       option :path,      :default => default_install_path
       option :binstubs,  :default => default_binstubs_path
+      option :"no-binstubs",  type: :boolean, default: false
+      option :"no-path",  type: :boolean, default: false
       desc "install [OPTIONS]","do bundle install."
       def install(*args)
-        exec_cmd "bundle install --path=#{options[:path]} --binstubs=#{options[:binstubs]} #{args.join(%{ })}"
+        path_opt     = options[:"no-path"] ? %{} : "--path=#{options[:path]}"
+        binstubs_opt = options[:"no-binstubs"] ? %{} : "--binstubs=#{options[:binstubs]}"
+
+        exec_cmd "bundle install #{path_opt} #{binstubs_opt} #{args.join(%{ })}"
       end
       default_task :install
 

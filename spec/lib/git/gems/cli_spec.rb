@@ -17,6 +17,48 @@ describe Git::Gems::CLI do
           @instance.invoke(:install, [["--test", 'fuga']], {:path => "./hoge", :binstubs => "./binhoge"})
         }).to eq("bundle install --path=./hoge --binstubs=./binhoge --test fuga\n")
       end
+
+      it do
+        expect(capture(:stdout) {
+          @instance.invoke(:install, [], {:"no-path" => true})
+        }).to eq("bundle install  --binstubs=./.bundle/bin \n")
+      end
+
+      it do
+        expect(capture(:stdout) {
+          @instance.invoke(:install, [], {:"no-binstubs" => true})
+        }).to eq("bundle install --path=./.bundle  \n")
+      end
+
+      it do
+        expect(capture(:stdout) {
+          @instance.invoke(:install, [], {:"no-binstubs" => true, :"no-path" => true})
+        }).to eq("bundle install   \n")
+      end
+
+      it do
+        expect(capture(:stdout) {
+          @instance.invoke(:install, [], {path: "test", :"no-path" => true})
+        }).to eq("bundle install  --binstubs=./.bundle/bin \n")
+      end
+
+      it do
+        expect(capture(:stdout) {
+          @instance.invoke(:install, [], {binstubs: "test", :"no-binstubs" => true})
+        }).to eq("bundle install --path=./.bundle  \n")
+      end
+
+      it do
+        expect(capture(:stdout) {
+          @instance.invoke(:install, [], {binstubs: "test", :"no-path" => true})
+        }).to eq("bundle install  --binstubs=test \n")
+      end
+
+      it do
+        expect(capture(:stdout) {
+          @instance.invoke(:install, [], {path: "test", :"no-binstubs" => true})
+        }).to eq("bundle install --path=test  \n")
+      end
     end
 
     describe "#exec" do
