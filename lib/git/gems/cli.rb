@@ -28,14 +28,17 @@ module Git
       option :binstubs,  :default => default_binstubs_path
       option :"no-binstubs",  type: :boolean, default: false
       option :"no-path",  type: :boolean, default: false
-      desc "install [OPTIONS]","do bundle install."
-      def install(*args)
+      option :production,  type: :boolean, default: false
+      desc "bundler [OPTIONS]","do bundle install."
+      def bundler(*args)
+        group_opt    = options[:production] ? "--without development test" : %{}
+        path_opt     = options[:"no-path"] ? %{} : "--path=#{options[:path]}"
         path_opt     = options[:"no-path"] ? %{} : "--path=#{options[:path]}"
         binstubs_opt = options[:"no-binstubs"] ? %{} : "--binstubs=#{options[:binstubs]}"
 
-        exec_cmd "bundle install #{path_opt} #{binstubs_opt} #{args.join(%{ })}"
+        exec_cmd "bundle install #{path_opt} #{binstubs_opt} #{group_opt} #{args.join(%{ })}"
       end
-      default_task :install
+      default_task :bundler
 
       desc 'exec [COMMAND] [OPTIONS]','do bundle exec .'
       def exec(cmd, *args)
