@@ -48,7 +48,7 @@ module Git
       desc 'init','initilalize ruby project'
       def init()
         %w(Rakefile Gemfile README.md).each do |f|
-          exec_cmd "cp -a #{File.expand_path("../../../../fixtures/#{f}.template", __FILE__)} ./#{f}"
+          exec_cmd "cp -a #{File.expand_path("../../../fixtures/#{f}.template", File.dirname(__FILE__))} ./#{f}"
         end
         exec_cmd "mkdir -p lib spec"
         exec_cmd "touch lib/.keep spec/.keep"
