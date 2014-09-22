@@ -28,11 +28,12 @@ module Git
       option :binstubs,  :default => default_binstubs_path
       option :"no-binstubs",  type: :boolean, default: false
       option :"no-path",  type: :boolean, default: false
+      option :global,  type: :boolean, default: false
       option :production,  type: :boolean, default: false
       desc "bundler [OPTIONS]","do bundle install."
       def bundler(*args)
+        options[:"no-path"], options[:"no-binstubs"] = true if options[:global]
         group_opt    = options[:production] ? "--without development test" : %{}
-        path_opt     = options[:"no-path"] ? %{} : "--path=#{options[:path]}"
         path_opt     = options[:"no-path"] ? %{} : "--path=#{options[:path]}"
         binstubs_opt = options[:"no-binstubs"] ? %{} : "--binstubs=#{options[:binstubs]}"
 
