@@ -48,7 +48,12 @@ The runs are passed to the bundle exec option if it does not support came over. 
     git gems [command]
     # or
     git gems exec [command]
-    
+
+`update` command:  
+Do the `bundle update`
+
+    git gems update
+
 
 
 

@@ -64,6 +64,11 @@ module Git
         exec_cmd "git push origin --tags" if options[:push]
       end
 
+      desc 'update', 'update bundled gems'
+      def release(*args)
+        exec_cmd "bundle update #{args.join(%{ })}"
+      end
+
       private
       def exec_cmd(command)
         pid = spawn(command.to_s)
