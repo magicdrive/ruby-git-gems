@@ -112,4 +112,12 @@ git push origin --tags
     end
 
   end
+  describe "#install" do
+      it do
+        expect(capture(:stdout) {
+          @instance.invoke(:release, [], {})
+        }).to eq('bundle update')
+      end
+
+  end
 end

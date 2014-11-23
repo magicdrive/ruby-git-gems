@@ -65,7 +65,7 @@ module Git
       end
 
       desc 'update', 'update bundled gems'
-      def release(*args)
+      def update(*args)
         exec_cmd "bundle update #{args.join(%{ })}"
       end
 
