@@ -1,9 +1,0 @@
-#! /usr/bin/env ruby
-# conding: utf-8
-
-require 'rubygems'
-require File.expand_path('../lib/git/gems', File.dirname(__FILE__))
-
-Git::Gems::CLI.start(ARGV)
-
-__END__
