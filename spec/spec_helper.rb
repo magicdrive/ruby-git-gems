@@ -1,6 +1,9 @@
 # spec_helper file.
-require File.expand_path('../lib/git/gems', File.dirname(__FILE__))
+$: << File.expand_path('../lib', File.dirname(__FILE__))
+$project_path = "#{File.expand_path("../", File.dirname(__FILE__))}"
+
 require 'stringio'
+require 'git/gems'
 require 'pry'
 
 def capture(stream)
