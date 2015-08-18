@@ -6,6 +6,7 @@ require 'thor'
 module Git
   module Gems
     class CLI < Thor
+
       class << self
         def is_rackapp?
           return File.exist?(File.expand_path("./config.ru"))
@@ -54,14 +55,6 @@ module Git
         exec_cmd "mkdir -p lib spec"
         exec_cmd "touch lib/.keep spec/.keep"
         exec_cmd "git init"
-      end
-
-      option :version, :default => Time.now.strftime("%Y%m%d%H%M")
-      option :push, :type => :boolean
-      desc 'release [--version] [version_name]', 'taged release-tag'
-      def release
-        exec_cmd "git tag -a 'release-#{options[:version]}'"
-        exec_cmd "git push origin --tags" if options[:push]
       end
 
       desc 'update', 'update bundled gems'

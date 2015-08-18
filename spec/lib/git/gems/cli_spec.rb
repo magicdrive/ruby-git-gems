@@ -1,3 +1,5 @@
+# conding: utf-8
+
 describe Git::Gems::CLI do
   context "success" do
 
@@ -86,27 +88,6 @@ cp -a #{$project_path}/fixtures/README.md.template ./README.md
 mkdir -p lib spec
 touch lib/.keep spec/.keep
 git init
-        STRING
-      end
-    end
-
-    describe "#release" do
-      it do
-        expect(capture(:stdout) {
-          @instance.invoke(:release, [], {})
-        }).to match(/git tag -a 'release-[0-9]{12}'/)
-      end
-      it do
-        expect(capture(:stdout) {
-          @instance.invoke(:release, [], {:version => 'hoge'})
-        }.strip).to eq("git tag -a 'release-hoge'")
-      end
-      it do
-        expect(capture(:stdout) {
-          @instance.invoke(:release, [], {:version => 'fuga', :push => true})
-        }).to eq(<<-STRING)
-git tag -a 'release-fuga'
-git push origin --tags
         STRING
       end
     end
