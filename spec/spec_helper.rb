@@ -18,7 +18,6 @@ def capture(stream)
   return result
 end
 
-
 class Git::Gems::CLI
   private
   def exec_cmd(command)
@@ -27,6 +26,5 @@ class Git::Gems::CLI
 end
 
 
-$project_path = "#{File.expand_path("../", File.dirname(__FILE__))}"
-
 __END__
+
