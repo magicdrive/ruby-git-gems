@@ -1,6 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/git-gems.svg)](http://badge.fury.io/rb/git-gems)
 [![Build Status](https://travis-ci.org/magicdrive/ruby-git-gems.svg?branch=feature%2Frspec)](https://travis-ci.org/magicdrive/ruby-git-gems)
-[![Build Status](https://drone.io/github.com/magicdrive/ruby-git-gems/status.png)](https://drone.io/github.com/magicdrive/ruby-git-gems/latest)
 
 # Git::Gems
 
