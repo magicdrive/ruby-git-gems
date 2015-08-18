@@ -4,11 +4,12 @@ source 'https://rubygems.org'
 gem 'rake'
 
 group 'development' do
+  gem 'pre-commit'
   gem 'pry'
   gem 'pry-doc'
 end
 
 group 'test' do
-  gem 'rspec'
+  gem 'minitest'
 end
 
