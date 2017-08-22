@@ -9,7 +9,7 @@ module Git
 
       class << self
         def has_vendor_dir?
-          return File.exist?(File.expand_path("./config.ru")) && Dir.exist?(File.expand_path("./vendor"))
+          return File.exist?(File.expand_path("./config.ru")) || Dir.exist?(File.expand_path("./vendor"))
         end
 
         def default_install_path()
