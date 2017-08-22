@@ -8,13 +8,13 @@ module Git
     class CLI < Thor
 
       class << self
-        def is_rackapp?
-          return File.exist?(File.expand_path("./config.ru"))
+        def has_vendor_dir?
+          return File.exist?(File.expand_path("./config.ru")) && Dir.exist?(File.expand_path("./vendor"))
         end
 
         def default_install_path()
           install_path = options[:path]
-          install_path = is_rackapp? ?
+          install_path = has_vendor_dir? ?
             "./vendor/bundle" : "./.bundle" if install_path.nil?
           return install_path
         end
